@@ -1,0 +1,114 @@
+1 - OK
+2 - OK
+3 - 6, S
+4 - A
+5 - OK
+6 - OK
+7 - OK
+8 - 6
+9 - 8
+A - A
+B - no detections
+C - G, 6
+D - no detections
+E - F
+F - E, F
+G - 6
+H - B
+S - OK
+T - no detections
+U - OK
+V - OK
+W - no detections
+X - OK
+Y - OK
+Z - OK
+UP - no detections
+DOWN - OK
+LEFT - OK
+RIGHT - no detections
+BULLSEYE - OK
+CIRCLE - OK
+
+1 - blue, white (x)
+2 - green, green 
+3 - red, blue (x)
+4 - white, red (x)
+5 - yellow, yellow
+6 - blue, white (x)
+7 - green, green
+8 - red, blue (x)
+9 - white, red (x)
+A - red, yellow (x)
+B - green, white (x)
+C - white, green (x)
+D - blue, blue (x)
+E - yellow, red (x)
+F - red, yellow (x)
+G - green, white (x)
+H - white, green (x)
+S - blue, blue 
+T - yellow, red (x)
+U - red, yellow (x)
+V - green, white (x)
+W - white, green (x)
+X - blue, blue
+Y - yellow, red (x)
+Z - red, yellow (x)
+UP - white, white
+DOWN - red, red
+LEFT - blue, blue
+RIGHT - green, green
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+A
+B
+C
+D
+E
+F
+G
+H
+S
+T
+U
+V
+W
+X
+Y
+Z
+up_arrow
+down_arrow
+left_arrow
+right_arrow
+bullseye
+yellow_circle
+
+3, 8, S - all blue
+
+inside: 
+5 - 0.73
+X - V, X - 0.74
+up-arrow - 0.62, 0.77
+yellow circle - 0.71
+
+AFTER RETRAINED MODEL
+
+bright:
+6 - detected as 5 (0.97)
+8 - detected as 3 (0.88)
+B - no detections
+
+dark:
+8 - detected as 3 (0.96)
+B - detected as 5 (0.88) 
+G - detected as C (0.94)
+

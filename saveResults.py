@@ -14,8 +14,6 @@ for folder , sub_folders , files in os.walk(directory):
         # create the current path using the folder variable plus the file variable
         current_path = folder+"\\"+f
 
-        #  
-
         # Open the file to read the contents
         current_file = open(current_path, 'r')
 
