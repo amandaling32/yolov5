@@ -112,3 +112,8 @@ dark:
 B - detected as 5 (0.88) 
 G - detected as C (0.94)
 
+1. best_merged - best_merged3: best_171epoch + 261 images
+2. best_merged4: best_merged 3 + cropped images, no freeze
+3. best_merged5: best_merged 3 + cropped images, freeze
+4. best_merged6: best_171epoch + new images + cropped images, no freeze
+5. best_merged7: best_171epoch + new images + cropped images, freeze
