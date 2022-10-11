@@ -8,27 +8,27 @@ import numpy
 import os
 import imagezmq
 
-from Config import LOCALE, IMAGE_REC_SOCKET_BUFFER_SIZE, WIFI_IP, IMAGEREC_PORT
+# from Config import LOCALE, IMAGE_REC_SOCKET_BUFFER_SIZE, WIFI_IP, IMAGEREC_PORT
 
 import subprocess
 
 class ImageRec:
-    def __init__(self, host =WIFI_IP, port=IMAGEREC_PORT):
+    def __init__(self):
         self.save_dir = "./images"
         self.image_hub = imagezmq.ImageHub()
         self.i = 0
 
-    def connect(self):
-        try: 
-            self.s.connect((WIFI_IP, IMAGEREC_PORT))
-        except Exception as error:
-            print('Image Rec connection failed: ' + str(error))
+    # def connect(self):
+    #     try: 
+    #         self.s.connect((WIFI_IP, IMAGEREC_PORT))
+    #     except Exception as error:
+    #         print('Image Rec connection failed: ' + str(error))
 
-    def disconnect(self):
-        try:
-            self.s.close()
-        except Exception as error:
-            print('Image Rec disconnection failed: ' + str(error))
+    # def disconnect(self):
+    #     try:
+    #         self.s.close()
+    #     except Exception as error:
+    #         print('Image Rec disconnection failed: ' + str(error))
 
     #------------RECEIVE PICS FROM RPI------------#
     def recv_pic(self):
@@ -49,7 +49,7 @@ class ImageRec:
     #------------PREDICTION------------#
     def predict(self):
         try: 
-            self.detect_output = subprocess.check_output("python detect.py --weights best_merged9.pt --img 640 --conf 0.6 --source ./images/frame_{}.jpg --data ./mdpimages2-7/data.yaml".format(self.i), shell=True)
+            self.detect_output = subprocess.check_output("python detect.py --weights best_merged10.pt --img 640 --conf 0.6 --source ./images/frame_{}.jpg --data ./mdpimages2-7/data.yaml".format(self.i), shell=True)
             self.detect_dir = self.detect_output.decode('utf-8')
         except Exception as error:
             print('Image Rec predict failed: ' + str(error))
@@ -104,24 +104,25 @@ class ImageRec:
             #         max = count[int(results[i])]
             #         result = results[i]
             for i in range(length):
-                if area[i] > max:
+                if area[i] > max and results[i] != '41':
                     max = area[i]
                     result = results[i]
                     
             if max == 0:
-                result = str(0) # no symbol
-            if result == '29':
-                result = '25'   # up arrow
-            if result == '26':
-                result = '26'  # down arrow
-            if result == '28':
-                result = '27'  # right arrow
-            if result == '27':
-                result = '28'  # left arrow
-            if result == '30':
-                result = '29'  # yellow circle
-            if result == '25':
-                result = '30'  # bullseye
+                result = ":(" # no symbol
+            # else:
+            #     if result == '29':
+            #         result = '25'   # up arrow
+            #     elif result == '26':
+            #         result = '26'  # down arrow
+            #     elif result == '28':
+            #         result = '27'  # right arrow
+            #     elif result == '27':
+            #         result = '28'  # left arrow
+            #     elif result == '30':
+            #         result = '29'  # yellow circle
+            #     elif result == '25':
+            #         result = '30'  # bullseye
             print('I' + result)
             # self.s.send(('I'+result).encode())
             self.image_hub.send_reply(('I'+result).encode())

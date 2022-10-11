@@ -115,5 +115,8 @@ G - detected as C (0.94)
 1. best_merged - best_merged3: best_171epoch + 261 images
 2. best_merged4: best_merged 3 + cropped images, no freeze
 3. best_merged5: best_merged 3 + cropped images, freeze
-4. best_merged6: best_171epoch + new images + cropped images, no freeze
+4. best_merged6: best_171epoch + new images + cropped images, no freeze (used)
 5. best_merged7: best_171epoch + new images + cropped images, freeze
+6. best_merged8: best_merged6 + overlapping detect, no freeze
+7. best_merged9: best_merged6 + overlapping detect, freeze (used)
+8. best_merged10: best_merged9 + cropped images, freeze (used)

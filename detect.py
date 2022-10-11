@@ -154,16 +154,39 @@ def run(
 
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
+
+                    class_new = int(cls)
+
+                    #print(cls)
+                    if class_new == 29:
+                        class_new = 25   # up arrow
+                    elif class_new == 26:
+                        class_new = 26  # down arrow
+                    elif class_new == 28:
+                        class_new = 27  # right arrow
+                    elif class_new == 27:
+                        class_new = 28  # left arrow
+                    elif class_new == 30:
+                        class_new = 29  # yellow circle
+                    elif class_new == 25:
+                        class_new = 30  # bullseye
+                    #print("fkkkkk ", c)
+
+                    image_id = class_new + 11
+
                     if save_txt:  # Write to file
                         
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
-                        line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
+                        line = (image_id, *xywh, conf) if save_conf else (image_id, *xywh)  # label format
+                        # print("FK         ",line, type(line))
                         with open(f'{txt_path}.txt', 'a') as f:
                             f.write(('%g ' * len(line)).rstrip() % line + '\n')
 
                     if save_img or save_crop or view_img:  # Add bbox to image
-                        c = int(cls)  # integer class
-                        label = None if hide_labels else (c if hide_conf else f'{names[c]} {conf:.2f}')
+                        c = image_id  # integer class
+                        class_old = int(cls)
+
+                        label = None if hide_labels else (c if hide_conf else f'{c} {conf:.2f}')
                         annotator.box_label(xyxy, label, color=colors(c, True))
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
