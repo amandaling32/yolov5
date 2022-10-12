@@ -178,7 +178,6 @@ def run(
                         
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         line = (image_id, *xywh, conf) if save_conf else (image_id, *xywh)  # label format
-                        # print("FK         ",line, type(line))
                         with open(f'{txt_path}.txt', 'a') as f:
                             f.write(('%g ' * len(line)).rstrip() % line + '\n')
 
@@ -186,7 +185,7 @@ def run(
                         c = image_id  # integer class
                         class_old = int(cls)
 
-                        label = None if hide_labels else (c if hide_conf else f'{c} {conf:.2f}')
+                        label = None if hide_labels else (c if hide_conf else f'{names[class_old]} {conf:.2f}')
                         annotator.box_label(xyxy, label, color=colors(c, True))
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)

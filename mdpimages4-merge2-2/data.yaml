@@ -1,0 +1,9 @@
+names:
+- '25'
+- '28'
+- bullseye
+- left_arrow
+- right_arrow
+nc: 5
+train: mdpimages4-merge2-2/train/images
+val: mdpimages4-merge2-2/valid/images
